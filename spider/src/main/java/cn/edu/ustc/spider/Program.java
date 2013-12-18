@@ -11,7 +11,7 @@ public class Program
 {
     public static void main( String[] args ) throws IOException
     {
-    	ISpiderConfigure conf=new SpiderConfigure("D:\\Repository\\iJob\\iJob\\spider\\src\\main\\java\\spider-conf.xml",WebSiteFactory.getIntance());
+    	ISpiderConfigure conf=new SpiderConfigure(new Program().getClass().getClassLoader().getResource("spider-conf.xml").getPath(),WebSiteFactory.getIntance());
     	Spider spider=new Spider(conf);
     	spider.get();
     }
