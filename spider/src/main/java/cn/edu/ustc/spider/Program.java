@@ -6,7 +6,6 @@ import cn.edu.ustc.spider.conf.impl.WebSiteFactory;
 import cn.edu.ustc.spider.conf.inf.ISpiderConfigure;
 import cn.edu.ustc.spider.core.Spider;
 
-//Program Enter point
 public class Program 
 {
     public static void main( String[] args ) throws IOException
