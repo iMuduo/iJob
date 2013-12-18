@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- <![CDATA[]]> -->
+<!DOCTYPE spider [
+	<!ELEMENT spider (websites)>
+	<!ELEMENT websites (site+)>
+	<!ELEMENT site (search-url,page_param,result_list)>
+	<!ELEMENT search-url (#PCDATA)>
+	<!ELEMENT page_param (#PCDATA)>
+	<!ELEMENT result_list (info+)>
+	<!ELEMENT info (#PCDATA)>
+	<!ATTLIST site priority CDATA "1">
+	<!ATTLIST site name CDATA #REQUIRED>
+	<!ATTLIST info name (job|company) #REQUIRED>
+]>
 <spider>
 	<websites>
+		<site priority="1" name="chinahr">
+			<search-url><![CDATA[http://www.chinahr.com/so/0/0-0-0-0-0-0-0-0-0-0-0-0-0-0/]]></search-url>
+			<page_param><![CDATA[p]]></page_param>
+			<result_list>
+				<info name="job"><![CDATA[.joblist_jobname a[target]]]></info>
+				<info name="company"><![CDATA[.joblist_a a[target]]]></info>
+			</result_list>
+		</site>
+		<site priority="1" name="zhaopin">
+			<search-url><![CDATA[http://sou.zhaopin.com/Jobs/searchresult.ashx?jl=%E5%8C%97%E4%BA%AC&kw=2&sm=0&sf=0&sg=5e01f17ce73b4d14a760a1441ecb156b]]></search-url>
+			<page_param><![CDATA[&p=]]></page_param>
+			<result_list>
+				<info name="job"><![CDATA[.Jobname a]]></info>
+				<info name="company"><![CDATA[.Companyname a]]></info>
+			</result_list>
+		</site>
 		<site priority="1" name="51job">
 			<search-url><![CDATA[http://search.51job.com/jobsearch/search_result.php?fromJs=1&jobarea=000000%2C00&district=000000&funtype=0000&industrytype=00&issuedate=9&providesalary=99&keyword=2&keywordtype=2&lang=c&stype=2&postchannel=0001&workyear=99&cotype=99&degreefrom=99&jobterm=01&lonlat=0%2C0&radius=-1&ord_field=0&list_type=0&fromType=14]]></search-url>
-			<page_param>curr_page</page_param>
-			<result_list name="resultList">
-				<info name="job" at="jobname"><![CDATA[http://search.51job.com/job]]></info>
-				<info name="company" at="coname"><![CDATA[http://search.51job.com/list]]></info>
+			<page_param><![CDATA[&curr_page=]]></page_param>
+			<result_list>
+				<info name="job"><![CDATA[.resultList .jobname]]></info>
+				<info name="company"><![CDATA[.resultList .coname]]></info>
 			</result_list>
 		</site>
 	</websites>

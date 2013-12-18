@@ -13,11 +13,8 @@ import cn.edu.ustc.spider.conf.inf.IWebSite;
 
 public class WebSite implements IWebSite {
 	private String name;
-	private String className;
 	private String jobAt;
 	private String companyAt;
-	private String jobLike;
-	private String companyLike;
 	private int priority;
 	private String url;
 	private String page;
@@ -33,28 +30,13 @@ public class WebSite implements IWebSite {
 	}
 
 	@Override
-	public void setResultClassName(String className) {
-		this.className = className;
+	public void setJobAt(String select) {
+		this.jobAt = select;
 	}
 
 	@Override
-	public void setJobAt(String at) {
-		this.jobAt = at;
-	}
-
-	@Override
-	public void setCompanyAt(String at) {
-		this.companyAt = at;
-	}
-
-	@Override
-	public void setJobLike(String like) {
-		this.jobLike = like;
-	}
-
-	@Override
-	public void setCompanyLike(String like) {
-		this.companyLike = like;
+	public void setCompanyAt(String select) {
+		this.companyAt = select;
 	}
 
 	@Override
@@ -79,7 +61,7 @@ public class WebSite implements IWebSite {
 
 	@Override
 	public String getNextUrl() {
-		return String.format("%1$s&%2$s=%3$d", this.url, this.page,
+		return String.format("%1$s%2$s%3$d", this.url, this.page,
 				++this.currPage);
 	}
 
@@ -101,10 +83,8 @@ public class WebSite implements IWebSite {
 		List<JobInfo1> jobList = new LinkedList<JobInfo1>();
 		try {
 			doc = Jsoup.connect(url).get();
-			Elements jobs = doc.select(String.format(".%2$s", className,
-					jobAt));
-			Elements companys = doc.select(String.format(".%2$s",
-					className, companyAt));
+			Elements jobs = doc.select(jobAt);
+			Elements companys = doc.select(companyAt);
 			if (jobs.size() != companys.size())
 				logger.info(String
 						.format("fetch %1$s error,becasue job count not equal company count!",
@@ -122,15 +102,4 @@ public class WebSite implements IWebSite {
 		}
 		return jobList;
 	}
-
-	@Override
-	public boolean isJobInfo(String job) {
-		return job.indexOf(this.jobLike) != -1;
-	}
-
-	@Override
-	public boolean isCompanyInfo(String company) {
-		return company.indexOf(this.companyLike) != -1;
-	}
-
 }

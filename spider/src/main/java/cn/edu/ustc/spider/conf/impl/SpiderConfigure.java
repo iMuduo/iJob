@@ -49,13 +49,10 @@ public class SpiderConfigure implements ISpiderConfigure{
 			site.setPriority(Integer.valueOf(e.attributeValue("priority")));
 			site.setSearchUrl(e.elementText("search-url"));
 			site.setPageParams(e.elementText("page_param"));
-			site.setResultClassName(e.element("result_list").attributeValue("name"));
 			Element job=(Element)e.selectSingleNode("./result_list/info[@name='job']");
-			site.setJobAt(job.attributeValue("at"));
-			site.setJobLike(job.getText());
+			site.setJobAt(job.getText());
 			Element company=(Element)e.selectSingleNode("./result_list/info[@name='company']");
-			site.setCompanyAt(company.attributeValue("at"));
-			site.setCompanyLike(company.getText());
+			site.setCompanyAt(company.getText());
 			this.websites.add(site);
 		}
 		return this.websites;
