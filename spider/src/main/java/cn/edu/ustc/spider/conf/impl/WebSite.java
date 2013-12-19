@@ -77,7 +77,6 @@ public class WebSite implements IWebSite {
 
 	@Override
 	public List<JobInfo1> getJobInfo(String url) {
-		System.err.println(url);
 		Logger logger = Logger.getLogger(getClass());
 		Document doc;
 		List<JobInfo1> jobList = new LinkedList<JobInfo1>();
