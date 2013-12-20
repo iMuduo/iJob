@@ -1,6 +1,7 @@
 package cn.edu.ustc.spider.conf.impl;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,7 +12,11 @@ import org.jsoup.select.Elements;
 
 import cn.edu.ustc.spider.conf.inf.IWebSite;
 
-public class WebSite implements IWebSite {
+public class WebSite implements IWebSite,Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2161982897681866944L;
 	private String name;
 	private String jobAt;
 	private String companyAt;
@@ -86,8 +91,8 @@ public class WebSite implements IWebSite {
 			Elements companys = doc.select(companyAt);
 			if (jobs.size() != companys.size())
 				logger.info(String
-						.format("fetch %1$s error,becasue job count not equal company count!",
-								url));
+						.format("fetch %1$s error,becasue job count:%2$d not equal company count:%3$d!",
+								url,jobs.size(),companys.size()));
 			else
 				for (int i = 0; i < jobs.size(); i++) {
 					JobInfo1 info = new JobInfo1();
@@ -97,7 +102,7 @@ public class WebSite implements IWebSite {
 				}
 		} catch (IOException e) {
 			logger.info(String.format("fetch %1$s error!", url));
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return jobList;
 	}
