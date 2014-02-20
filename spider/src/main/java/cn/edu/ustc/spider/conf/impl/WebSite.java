@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 
 import cn.edu.ustc.spider.conf.inf.IWebSite;
 
-public class WebSite implements IWebSite,Serializable {
+public class WebSite implements IWebSite,Serializable{
 	/**
 	 * 
 	 */
@@ -105,5 +105,11 @@ public class WebSite implements IWebSite,Serializable {
 			//e.printStackTrace();
 		}
 		return jobList;
+	}
+
+	@Override
+	public int compareTo(IWebSite o) {
+		// TODO Auto-generated method stub
+		return new Integer(o.getPriority()).compareTo(new Integer(o.getPriority()));
 	}
 }

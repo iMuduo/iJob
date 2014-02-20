@@ -6,4 +6,5 @@ public interface ISpiderConfigure {
 	public void setConfigureFile(String confPath,IWebSiteFactory factory);
 	public List<IWebSite> getWebSites();
 	public void refresh();
+	public int getSiteCount();
 }

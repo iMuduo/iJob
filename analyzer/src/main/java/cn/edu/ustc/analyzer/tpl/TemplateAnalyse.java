@@ -1,4 +1,4 @@
-package cn.edu.uset.analyzer.tpl;
+package cn.edu.ustc.analyzer.tpl;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
