@@ -24,6 +24,7 @@ public class WebSite implements IWebSite,Serializable{
 	private String url;
 	private String page;
 	private int currPage;
+	private int max;
 
 	public WebSite() {
 		this.currPage = 0;
@@ -111,5 +112,17 @@ public class WebSite implements IWebSite,Serializable{
 	public int compareTo(IWebSite o) {
 		// TODO Auto-generated method stub
 		return new Integer(o.getPriority()).compareTo(new Integer(o.getPriority()));
+	}
+
+	@Override
+	public void setMaxPages(int max) {
+		// TODO Auto-generated method stub
+		this.max=max;
+	}
+
+	@Override
+	public boolean isMaxPages() {
+		// TODO Auto-generated method stub
+		return max==currPage;
 	}
 }

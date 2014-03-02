@@ -39,7 +39,7 @@ public class Spider implements Runnable{
 			IWebSite site=list.get(index++);
 			String url=site.getNextUrl();
 			List<JobInfo1> infoList=null;
-			while((infoList=site.getJobInfo(url))!=null)
+			while((!site.isMaxPages())&&(infoList=site.getJobInfo(url))!=null)
 			{
 				for(JobInfo1 info: infoList)
 				{

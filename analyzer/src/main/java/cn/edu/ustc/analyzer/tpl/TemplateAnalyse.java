@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.edu.ustc.common.EasyDebug;
+
 public class TemplateAnalyse {
 	private String tpl = null;
 	private Map<String, String> result = null;
@@ -53,7 +55,7 @@ public class TemplateAnalyse {
 			for (String key : result.keySet())
 				result.put(key, m.group(key));
 		}
-		return result;
+		return new Hashtable<>(result);
 	}
 
 	public Map<String, String> getResult() {

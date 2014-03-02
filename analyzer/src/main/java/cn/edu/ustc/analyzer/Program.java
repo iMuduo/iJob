@@ -20,8 +20,9 @@ public class Program {
 		DBCollection db = MongoDB.getCollection("jobInfo1");
 		while (true) {
 			DBObject obj = db.findOne();
-			if ((obj != null)
-					&& (obj.get("job").toString().indexOf("http://www.chinahr.com/") != -1)) {
+			if(obj == null)
+				continue;
+			if (obj.get("job").toString().indexOf("http://www.chinahr.com/") != -1) {
 				try {
 					Document doc = Jsoup.connect(obj.get("job").toString())
 							.get();
@@ -34,9 +35,9 @@ public class Program {
 					DBHelper.save(MongoDB.getCollection("jobInfo2"), info);
 				} catch (Exception e) {
 					// TODO: handle exception
+					System.out.println(e.toString());
 				}
-			} else if ((obj != null)
-					&& (obj.get("job").toString().indexOf("http://jobs.zhaopin.com/") != -1)) {
+			} else if (obj.get("job").toString().indexOf("http://jobs.zhaopin.com/") != -1) {
 				try {
 					Document doc = Jsoup.connect(obj.get("job").toString())
 							.get();
@@ -49,9 +50,9 @@ public class Program {
 					DBHelper.save(MongoDB.getCollection("jobInfo2"), info);
 				} catch (Exception e) {
 					// TODO: handle exception
+					System.out.println(e.toString());
 				}
-			} else if ((obj != null)
-					&& (obj.get("job").toString().indexOf("http://search.51job.com/") != -1)) {
+			} else if (obj.get("job").toString().indexOf("http://search.51job.com/") != -1) {
 				try {
 					Document doc = Jsoup.connect(obj.get("job").toString())
 							.get();

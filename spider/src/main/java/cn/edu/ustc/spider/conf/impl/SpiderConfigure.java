@@ -47,6 +47,7 @@ public class SpiderConfigure implements ISpiderConfigure{
 			for (Element e : siteList) {
 				IWebSite site = factory.createWebSite(e.attributeValue("name"));
 				site.setPriority(Integer.valueOf(e.attributeValue("priority")));
+				site.setMaxPages((Integer.valueOf(e.attributeValue("maxPage"))));
 				site.setSearchUrl(e.elementText("search-url"));
 				site.setPageParams(e.elementText("page_param"));
 				Element job = (Element) e

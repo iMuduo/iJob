@@ -10,9 +10,11 @@ public interface IWebSite extends Comparable<IWebSite>{
 	public void setSearchUrl(String url);
 	public void setPageParams(String page);
 	public void setPriority(int priority);
+	public void setMaxPages(int max);
 	public String getSearchUrl();
 	public String getNextUrl();
 	public String getName();
 	public int getPriority();
+	public boolean isMaxPages();
 	public List<JobInfo1> getJobInfo(String url);
 }
