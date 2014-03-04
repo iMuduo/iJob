@@ -7,12 +7,12 @@ String.prototype.replaceAll = function(reallyDo, replaceWith, ignoreCase) {
     }  
 };
 $(document).ready(function(){
-	var tds=$("td");
+	var spans=$("td>.content");
 	keyword=$("#keyword").text().trim();
 	$("input[name=keyword]").val(keyword);
-	for(var i=0;i<tds.length;i++)
+	for(var i=0;i<spans.length;i++)
 	{
-		if($(tds[i]).html().toLowerCase().indexOf(keyword.toLowerCase())!=-1)
-			$(tds[i]).html($(tds[i]).html().replaceAll(keyword,"<em>"+keyword+"</em>",true));
+		if($(spans[i]).html().toLowerCase().indexOf(keyword.toLowerCase())!=-1)
+			$(spans[i]).html($(spans[i]).html().replaceAll(keyword,"<em>"+keyword+"</em>",true));
 	}
 });

@@ -1,7 +1,8 @@
 package cn.edu.ustc.spider.conf.inf;
 
 import java.util.List;
-import cn.edu.ustc.spider.conf.impl.JobInfo1;
+
+import cn.edu.ustc.common.info.JobInfo1;
 
 public interface IWebSite extends Comparable<IWebSite>{
 	public void setName(String name);

@@ -1,4 +1,4 @@
-package cn.edu.ustc.spider.conf.impl;
+package cn.edu.ustc.common.info;
 
 public class JobInfo1 {
 	private String job;

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
 import cn.edu.ustc.common.MongoDB;
+import cn.edu.ustc.common.StringHelper;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -26,7 +27,7 @@ public class SearchAction extends ActionSupport{
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<Hashtable<String, String>> result=null;
-	private final String[] fields=new String[]{"cpnm","jbnm","cpscale","cptype","cptrade","genderrq","rcnos","agerq","wkform","deadline","degreerq","salary","wkxp","wkplace","jbdesc","wkrq","benefit","date","cpinfo"};
+	private final String[] fields=new String[]{"cpnm","jbnm","cpscale","cptype","cptrade","genderrq","rcnos","agerq","wkform","deadline","degreerq","salary","wkxp","wkplace","jbdesc","wkrq","benefit","date","cpinfo","origin","jburl","cpurl"};
 	private String keyword;
 	public String search() throws UnsupportedEncodingException{
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(
@@ -43,7 +44,7 @@ public class SearchAction extends ActionSupport{
 			Hashtable<String, String> row=new Hashtable<String, String>();
 			DBObject obj=query.next();
 			for(int i=0;i<fields.length;i++)
-				row.put(fields[i], (String) (obj.get(fields[i]).equals("")?"²»Ïê":obj.get(fields[i])));
+				row.put(fields[i], (String) (StringHelper.isNullOrEmpty(obj.get(fields[i]))?"²»Ïê":obj.get(fields[i])));
 			result.add(row);
 		}
 		return SUCCESS;

@@ -13,7 +13,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 
 import cn.edu.ustc.common.MongoDB;
-import cn.edu.ustc.spider.conf.impl.JobInfo1;
+import cn.edu.ustc.common.info.JobInfo1;
 import cn.edu.ustc.spider.conf.inf.ISpiderConfigure;
 import cn.edu.ustc.spider.conf.inf.IWebSite;
 

@@ -10,6 +10,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import cn.edu.ustc.common.info.JobInfo1;
 import cn.edu.ustc.spider.conf.inf.IWebSite;
 
 public class WebSite implements IWebSite,Serializable{

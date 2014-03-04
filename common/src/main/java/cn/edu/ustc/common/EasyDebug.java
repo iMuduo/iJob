@@ -1,5 +1,7 @@
 package cn.edu.ustc.common;
 
+import org.apache.log4j.Logger;
+
 public final class EasyDebug {
 	private static boolean ctl=false;
 	
@@ -16,5 +18,11 @@ public final class EasyDebug {
 	{
 		if(ctl)
 			System.out.println(info);
+	}
+	
+	public static void log4j(String msg,Class<?> target)
+	{
+		debug(msg);
+		Logger.getLogger(target).info(msg);
 	}
 }

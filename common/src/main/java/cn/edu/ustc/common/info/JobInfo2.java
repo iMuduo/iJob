@@ -1,9 +1,34 @@
-package cn.edu.ustc.analyzer.tpl;
+package cn.edu.ustc.common.info;
 
 import cn.edu.ustc.common.ActiveRecord;
 
+
 public class JobInfo2 extends ActiveRecord {
-	private String cpnm,jbnm,cpscale,cptype,cptrade,genderrq,rcnos,agerq,wkform,deadline,degreerq,salary,wkxp,wkplace,jbdesc,wkrq,benefit,date,cpinfo;
+	private String cpnm,jbnm,cpscale,cptype,cptrade,genderrq,rcnos,agerq,wkform,deadline,degreerq,salary,wkxp,wkplace,jbdesc,wkrq,benefit,date,cpinfo,origin,jburl,cpurl;
+
+	public String getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+
+	public String getJburl() {
+		return jburl;
+	}
+
+	public void setJburl(String jburl) {
+		this.jburl = jburl;
+	}
+
+	public String getCpurl() {
+		return cpurl;
+	}
+
+	public void setCpurl(String cpurl) {
+		this.cpurl = cpurl;
+	}
 
 	public String getCpnm() {
 		return cpnm;

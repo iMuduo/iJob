@@ -1,4 +1,5 @@
 package cn.edu.ustc.analyzer.tpl;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,8 +10,6 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import cn.edu.ustc.common.EasyDebug;
 
 public class TemplateAnalyse {
 	private String tpl = null;
@@ -27,10 +26,10 @@ public class TemplateAnalyse {
 				"(?<$1>.*)$2");
 	}
 
-	public TemplateAnalyse(String tpl,Object o) {
+	public TemplateAnalyse(String tpl, Object o) {
 		prepare(tpl);
 	}
-	
+
 	public TemplateAnalyse(String pathname) throws IOException {
 		this(new File(pathname));
 	}
@@ -48,14 +47,16 @@ public class TemplateAnalyse {
 		this(new FileInputStream(file));
 	}
 
-	public Map<String, String> analyse(String content) {
-		Pattern p = Pattern.compile(tpl,Pattern.COMMENTS);
+	public Map<String, String> analyseContent(String content) {
+		Pattern p = Pattern.compile(tpl);
 		Matcher m = p.matcher(content);
+
 		while (m.find()) {
 			for (String key : result.keySet())
 				result.put(key, m.group(key));
+			return new Hashtable<>(result);
 		}
-		return new Hashtable<>(result);
+		return null;
 	}
 
 	public Map<String, String> getResult() {

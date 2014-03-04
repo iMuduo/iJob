@@ -40,12 +40,49 @@
 		<s:iterator var="item" value="result">
 			<table>
 				<tr>
-					<td>公司名称：<s:property value="#item['cpnm']" /></td>
-					<td>工作名称：<s:property value="#item['jbnm']" /></td>
+					<td><span class="desc">公司名称：</span><span class="content"><s:property value="#item['cpnm']" /></span></td>
+					<td><span class="desc">工作名称：</span><span class="content"><s:property value="#item['jbnm']" /></span></td>
+				</tr>
+				<tr> 
+					<td><span class="desc">公司规模：</span><span class="content"><s:property value="#item['cpscale']" /></span></td>
+					<td><span class="desc">公司类型：</span><span class="content"><s:property value="#item['cptype']" /></span></td>
 				</tr>
 				<tr>
-					<td>工作经验：<s:property value="#item['wkxp']" /></td>
-					<td>薪资待遇：<s:property value="#item['salary']" /></td>
+					<td><span class="desc">公司行业：</span><span class="content"><s:property value="#item['cptrade']" /></span></td>
+					<td><span class="desc">性别要求：</span><span class="content"><s:property value="#item['genderrq']" /></span></td>
+				</tr>
+				<tr>
+					<td><span class="desc">招聘人数：</span><span class="content"><s:property value="#item['rcnos']" /></span></td>
+					<td><span class="desc">年龄要求：</span><span class="content"><s:property value="#item['agerq']" /></span></td>
+				</tr>
+				<tr>
+					<td><span class="desc">工作形式：</span><span class="content"><s:property value="#item['wkform']" /></span></td>
+					<td><span class="desc">截止日期：</span><span class="content"><s:property value="#item['deadline']" /></span></td>
+				</tr>
+				<tr>
+					<td><span class="desc">学历要求：</span><span class="content"><s:property value="#item['degreerq']" /></span></td>
+					<td><span class="desc">薪资待遇：</span><span class="content"><s:property value="#item['salary']" /></span></td>
+				</tr>
+				<tr>
+					<td><span class="desc">工作经验：</span><span class="content"><s:property value="#item['wkxp']" /></span></td>
+					<td><span class="desc">工作地点：</span><span class="content"><s:property value="#item['wkplace']" /></span></td>
+				</tr>
+
+				<tr>
+					<td><span class="desc">职位描述：</span><span class="content"><s:property value="#item['jbdesc']" /></span></td>
+					<td><span class="desc">工作要求：</span><span class="content"><s:property value="#item['wkrq']" /></span></td>
+				</tr>
+				<tr>
+					<td><span class="desc">相关福利：</span><span class="content"><s:property value="#item['benefit']" /></span></td>
+					<td><span class="desc">发布日期：</span><span class="content"><s:property value="#item['date']" /></span></td>
+				</tr>
+				<tr>
+					<td><span class="desc">公司信息：</span><span class="content"><s:property value="#item['cpinfo']" /></span></td>
+					<td><span class="desc">信息来源：</span><span class="content"><s:property value="#item['origin']" /></span></td>
+				</tr>
+				<tr>
+					<td><span class="desc">工作信息链接：</span><span class="content"><s:property value="#item['jburl']" /></span></td>
+					<td><span class="desc">公司信息连接：</span><span class="content"><s:property value="#item['cpurl']" /></span></td>
 				</tr>
 			</table>
 		</s:iterator>

@@ -1,12 +1,11 @@
 package cn.edu.ustc.spider;
 
 import java.io.DataInputStream;
-import java.io.File;
 import java.io.IOException;
 
 import org.apache.log4j.PropertyConfigurator;
 
-
+import cn.edu.ustc.common.FileTester;
 import cn.edu.ustc.spider.conf.impl.SpiderConfigure;
 import cn.edu.ustc.spider.conf.impl.WebSiteFactory;
 import cn.edu.ustc.spider.conf.inf.ISpiderConfigure;
@@ -14,29 +13,23 @@ import cn.edu.ustc.spider.core.Spider;
 
 public class Program {
 	@SuppressWarnings("deprecation")
-	public static void main(String[] args) throws IOException
-			, ClassNotFoundException {
-		//Make configure
+	public static void main(String[] args) throws IOException,
+			ClassNotFoundException {
+		// Make configure
 		ProgramConfigure.makeConf(args);
-		//Load configure
-		String confFilePath=null;
-		if(new File("spider-conf.xml").exists())
-		{
-			confFilePath="spider-conf.xml";
-			PropertyConfigurator.configure("log4j.properties");
-		}
-		else 
-			confFilePath=new Program().getClass().getClassLoader().getResource("spider-conf.xml").getPath();
-		ISpiderConfigure conf = new SpiderConfigure(confFilePath,
-				WebSiteFactory.getIntance());
-		
-		//Judge Status
+		// Load configure
+		PropertyConfigurator.configure(new FileTester("log4j.properties")
+				.getFilePath());
+		ISpiderConfigure conf = new SpiderConfigure(new FileTester(
+				"spider-conf.xml").getFilePath(), WebSiteFactory.getIntance());
+
+		// Judge Status
 		if (Spider.hasStatus())
 			Spider.getStatus();
 		else
 			Spider.setConfigure(conf);
-		
-		for(int i=0;i<conf.getSiteCount();i++)
+
+		for (int i = 0; i < conf.getSiteCount(); i++)
 			new Thread(new Spider()).start();
 
 		DataInputStream di = new DataInputStream(System.in);

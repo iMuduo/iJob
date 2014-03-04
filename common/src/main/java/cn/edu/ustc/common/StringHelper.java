@@ -1,0 +1,15 @@
+package cn.edu.ustc.common;
+
+public final class StringHelper {
+	public static boolean isNullOrEmpty(Object obj)
+	{
+		if(obj==null) return true;
+		if(obj.toString().isEmpty()) return true;
+		return false;
+	}
+	
+	public static boolean isNotNullOrEmpty(Object obj)
+	{
+		return !isNotNullOrEmpty(obj);
+	}
+}

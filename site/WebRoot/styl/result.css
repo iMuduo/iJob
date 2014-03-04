@@ -10,6 +10,14 @@ em {
 	font-style: normal;
 }
 
+td{
+	height: 20px;
+}
+
+.desc{
+	font-weight: bold;
+}
+
 HTML {
 	HEIGHT: 100%
 }
