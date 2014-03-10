@@ -12,4 +12,9 @@ public final class StringHelper {
 	{
 		return !isNotNullOrEmpty(obj);
 	}
+	
+	public static boolean isNotNull(Object obj)
+	{
+		return obj!=null;
+	}
 }

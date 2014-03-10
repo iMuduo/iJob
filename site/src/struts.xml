@@ -3,13 +3,26 @@
 <struts>
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 	<constant name="struts.devMode" value="true" />
-	<constant name="struts.i18n.encoding" value="GBK" />
+    <constant name="struts.i18n.encoding" value="utf-8"/>	
 	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
 	<constant name="struts.serve.static.browserCache" value="false" />
+	<constant name="struts.location" value="zh_CN"/>
 	<package name="default" extends="struts-default" namespace="/">
 		<action name="search" class="cn.edu.ustc.site.SearchAction"
 			method="search">
 			<result name="success" type="dispatcher">result.jsp</result>
+		</action>
+		<action name="page" class="cn.edu.ustc.site.SearchAjax">
+			<result name="success" type="plainText">
+				<param name="charSet">UTF-8</param>
+				<param name="location">/empty.jsp</param>
+			</result>
+		</action>
+		<action name="item" class="cn.edu.ustc.site.NothingAction">
+			<result name="success" type="plainText">
+				<param name="charSet">UTF-8</param>
+				<param name="location">/item.jsp</param>
+			</result>
 		</action>
 	</package>
 </struts>    

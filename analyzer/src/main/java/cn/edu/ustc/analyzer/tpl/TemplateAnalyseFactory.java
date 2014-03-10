@@ -3,7 +3,7 @@ package cn.edu.ustc.analyzer.tpl;
 import java.io.IOException;
 import java.util.Hashtable;
 import cn.edu.ustc.analyzer.conf.AnalyseConfigure;
-import cn.edu.ustc.common.FileTester;
+import cn.edu.ustc.common.FileSmart;
 import cn.edu.ustc.common.StringHelper;
 
 public final class TemplateAnalyseFactory {
@@ -14,7 +14,7 @@ public final class TemplateAnalyseFactory {
 		if(StringHelper.isNullOrEmpty(tpl))
 			return null;
 		if(!container.contains(tpl))
-			container.put(tpl, new TemplateAnalyse(new FileTester(AnalyseConfigure.getProperty(tpl)).getFile()));
+			container.put(tpl, new TemplateAnalyse(new FileSmart(AnalyseConfigure.getProperty(tpl)).getFile()));
 		return container.get(tpl);
 	}
 }

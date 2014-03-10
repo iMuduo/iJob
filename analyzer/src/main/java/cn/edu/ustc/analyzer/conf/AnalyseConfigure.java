@@ -2,10 +2,10 @@ package cn.edu.ustc.analyzer.conf;
 
 import java.util.Properties;
 
-import cn.edu.ustc.common.FileTester;
+import cn.edu.ustc.common.FileSmart;
 
 public class AnalyseConfigure {
-	private static Properties props=new FileTester("analyzer.properties").getProperties();
+	private static Properties props=new FileSmart("analyzer.properties").getProperties();
 	
 	public static String getWebName(String url)
 	{

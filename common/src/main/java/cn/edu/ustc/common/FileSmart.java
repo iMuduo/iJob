@@ -1,14 +1,18 @@
 package cn.edu.ustc.common;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 
-public class FileTester {
+public class FileSmart {
 	private String file=null;
-	public FileTester(String file){
+	public FileSmart(String file){
 		this.file=file;
 	}
 	
@@ -40,6 +44,25 @@ public class FileTester {
 			EasyDebug.log4j(("property:"+file+"is error!"),getClass());
 		}
 		return props;
+	}
+	
+	public List<String> getList(){
+		List<String> list=new LinkedList<String>();
+		try {
+			FileReader fr=new FileReader(getFile());
+			BufferedReader br=new BufferedReader(fr);
+			String line;
+			while(StringHelper.isNotNull(line=br.readLine()))
+			{
+				if(StringHelper.isNullOrEmpty(line))
+					continue;
+				list.add(line);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 	
 	public boolean exists(){

@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import org.apache.log4j.PropertyConfigurator;
 
-import cn.edu.ustc.common.FileTester;
+import cn.edu.ustc.common.FileSmart;
 import cn.edu.ustc.spider.conf.impl.SpiderConfigure;
 import cn.edu.ustc.spider.conf.impl.WebSiteFactory;
 import cn.edu.ustc.spider.conf.inf.ISpiderConfigure;
@@ -18,9 +18,9 @@ public class Program {
 		// Make configure
 		ProgramConfigure.makeConf(args);
 		// Load configure
-		PropertyConfigurator.configure(new FileTester("log4j.properties")
+		PropertyConfigurator.configure(new FileSmart("log4j.properties")
 				.getFilePath());
-		ISpiderConfigure conf = new SpiderConfigure(new FileTester(
+		ISpiderConfigure conf = new SpiderConfigure(new FileSmart(
 				"spider-conf.xml").getFilePath(), WebSiteFactory.getIntance());
 
 		// Judge Status

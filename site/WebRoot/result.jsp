@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
@@ -12,15 +12,17 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>ีานคื๗ฃฌiJob</title>
+<title>ๆพๅทฅไฝ๏ผiJob</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 <link rel="stylesheet" type="text/css" href="styl/result.css">
 <script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 <script type="text/javascript" src="js/result.js"></script>
+<script type="text/javascript" src="js/base.js"></script>
 </head>
 
 <body>
@@ -30,63 +32,16 @@
 			<span class="bg s_ipt_wr"> <input id="kw" class="s_ipt"
 				maxlength="100" type="text" name="keyword" align="bottom"> </span>
 			<span class="bg s_btn_wr"> <input id="su" class="bg s_btn"
-				value="หัห๗าปฯย" type="submit"> </span>
+				value="ๆ็ดขไธ€ไธ" type="submit"> </span>
 
 		</form>
-		<span class="tools"> <span id="mHolder"> </span> </span>
 	</div>
-	<div>
-
-		<s:iterator var="item" value="result">
-			<table>
-				<tr>
-					<td><span class="desc">นซหพร๛ณฦฃบ</span><span class="content"><s:property value="#item['cpnm']" /></span></td>
-					<td><span class="desc">นคื๗ร๛ณฦฃบ</span><span class="content"><s:property value="#item['jbnm']" /></span></td>
-				</tr>
-				<tr> 
-					<td><span class="desc">นซหพนๆฤฃฃบ</span><span class="content"><s:property value="#item['cpscale']" /></span></td>
-					<td><span class="desc">นซหพภเะอฃบ</span><span class="content"><s:property value="#item['cptype']" /></span></td>
-				</tr>
-				<tr>
-					<td><span class="desc">นซหพะะาตฃบ</span><span class="content"><s:property value="#item['cptrade']" /></span></td>
-					<td><span class="desc">ะิฑ๐าชว๓ฃบ</span><span class="content"><s:property value="#item['genderrq']" /></span></td>
-				</tr>
-				<tr>
-					<td><span class="desc">ีะฦธศหสýฃบ</span><span class="content"><s:property value="#item['rcnos']" /></span></td>
-					<td><span class="desc">ฤ๊มไาชว๓ฃบ</span><span class="content"><s:property value="#item['agerq']" /></span></td>
-				</tr>
-				<tr>
-					<td><span class="desc">นคื๗ะฮสฝฃบ</span><span class="content"><s:property value="#item['wkform']" /></span></td>
-					<td><span class="desc">ฝุึนศีฦฺฃบ</span><span class="content"><s:property value="#item['deadline']" /></span></td>
-				</tr>
-				<tr>
-					<td><span class="desc">ังภ๚าชว๓ฃบ</span><span class="content"><s:property value="#item['degreerq']" /></span></td>
-					<td><span class="desc">ะฝืสดýำ๖ฃบ</span><span class="content"><s:property value="#item['salary']" /></span></td>
-				</tr>
-				<tr>
-					<td><span class="desc">นคื๗พญั้ฃบ</span><span class="content"><s:property value="#item['wkxp']" /></span></td>
-					<td><span class="desc">นคื๗ตุตใฃบ</span><span class="content"><s:property value="#item['wkplace']" /></span></td>
-				</tr>
-
-				<tr>
-					<td><span class="desc">ึฐฮปร่ส๖ฃบ</span><span class="content"><s:property value="#item['jbdesc']" /></span></td>
-					<td><span class="desc">นคื๗าชว๓ฃบ</span><span class="content"><s:property value="#item['wkrq']" /></span></td>
-				</tr>
-				<tr>
-					<td><span class="desc">ฯเนุธฃภ๛ฃบ</span><span class="content"><s:property value="#item['benefit']" /></span></td>
-					<td><span class="desc">ทขฒผศีฦฺฃบ</span><span class="content"><s:property value="#item['date']" /></span></td>
-				</tr>
-				<tr>
-					<td><span class="desc">นซหพะลฯขฃบ</span><span class="content"><s:property value="#item['cpinfo']" /></span></td>
-					<td><span class="desc">ะลฯขภดิดฃบ</span><span class="content"><s:property value="#item['origin']" /></span></td>
-				</tr>
-				<tr>
-					<td><span class="desc">นคื๗ะลฯขมดฝำฃบ</span><span class="content"><s:property value="#item['jburl']" /></span></td>
-					<td><span class="desc">นซหพะลฯขมฌฝำฃบ</span><span class="content"><s:property value="#item['cpurl']" /></span></td>
-				</tr>
-			</table>
-		</s:iterator>
-	</div>
+	<p class="tip">
+		ๅทฒๆ็ดขๅฐ๏ผ
+		<s:property value="count"></s:property>
+		ๆก็ป“ๆ
+	<p>
+	<div id="result"></div>
 	<label id="keyword" style="display:none"> <s:property
 			value="keyword" /> </label>
 </body>
