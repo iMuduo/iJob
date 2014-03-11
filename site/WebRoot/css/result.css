@@ -7,14 +7,16 @@ body {
 }
 
 #search{
-	height:50px;
+	height:45px;
 	width: 100%;
 	padding-top: 20px;
 	position: relative;
 }
 
 #search img{
-	vertical-align: middle;
+	position: relative;
+	top:-10px;
+	left: 10px;
 }
 
 input[name='keyword'] {
@@ -32,6 +34,7 @@ input[name='go'] {
 	color:#CCCCCC !important;
 	height:37px;
 	position: relative;
+	top:-23px;
 }
 
 input[name='go']:hover{
