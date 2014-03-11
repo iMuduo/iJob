@@ -1,8 +1,9 @@
+	<h3>
+		<span class="desc">公司名称：</span><span class="content">{cpnm}</span>
+		<span class="desc">工作名称：</span><span class="content">{jbnm}</span>
+	</h3>
+	<div>
 <table>
-	<tr>
-		<td><span class="desc">公司名称：</span><span class="content">{cpnm}</span></td>
-		<td><span class="desc">工作名称：</span><span class="content">{jbnm}</span></td>
-	</tr>
 	<tr> 
 		<td><span class="desc">公司规模：</span><span class="content">{cpscale}</span></td>
 		<td><span class="desc">公司类型：</span><span class="content">{cptype}</span></td>
@@ -45,3 +46,4 @@
 		<td><a href="{cpurl}">公司详细信息</a></td>
 	</tr>
 </table>
+</div>

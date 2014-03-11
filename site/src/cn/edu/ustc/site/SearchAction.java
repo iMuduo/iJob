@@ -3,6 +3,7 @@ package cn.edu.ustc.site;
 import java.io.UnsupportedEncodingException;
 
 import cn.edu.ustc.site.base.BaseAction;
+import cn.edu.ustc.site.enhance.SearchEnhance;
 
 public class SearchAction extends BaseAction{
 	private static final long serialVersionUID = 1L;

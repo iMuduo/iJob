@@ -1,0 +1,84 @@
+*{
+	margin: 0;
+	font-family: Microsoft YaHei !important;
+}
+body {
+	height: auto;
+}
+
+#search{
+	height:50px;
+	width: 100%;
+	padding-top: 20px;
+	position: relative;
+}
+
+#search img{
+	vertical-align: middle;
+}
+
+input[name='keyword'] {
+	width: 400px;
+	height: 35px;
+	font-size: 20px;
+	vertical-align: top;
+}
+
+input[name='go'] {
+	width: 120px;
+	font-size: 30px;
+	line-height:35px;
+	padding: 0px !important;
+	color:#CCCCCC !important;
+	height:37px;
+	position: relative;
+}
+
+input[name='go']:hover{
+	color:#1AB9FB !important;
+}
+
+#goTop {
+	background-image:url(img/up.png);
+	opacity: 0.7;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	right: 10px;
+	cursor: default;
+	text-align: center;
+}
+
+#result{
+	padding-left: 20px;
+}
+
+table {
+	width: 100%;
+	table-layout: fixed;
+	border-bottom: 1px dashed gray;
+	padding-top: 3px;
+	position: relative;
+}
+
+em {
+	color: red;
+	font-style: normal;
+}
+
+td {
+	height: 20px;
+}
+
+.desc {
+	font-weight: bold;
+}
+
+.tip {
+	color: gray;
+	font-size: 10px;
+	padding-left: 23px;
+}
+a{
+	color:green;
+}

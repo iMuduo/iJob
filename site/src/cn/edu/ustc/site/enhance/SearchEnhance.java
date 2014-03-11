@@ -1,4 +1,4 @@
-package cn.edu.ustc.site;
+package cn.edu.ustc.site.enhance;
 
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 import cn.edu.ustc.common.MongoDB;
 import cn.edu.ustc.common.StringHelper;
-
+import cn.edu.ustc.site.base.S;
+import cn.edu.ustc.site.service.HotWordService;
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -31,6 +32,7 @@ public class SearchEnhance {
 				row.put(fields[j], (String) (StringHelper.isNullOrEmpty(obj.get(fields[j]))?"²»Ïê":obj.get(fields[j])));
 			result.add(row);
 		}
+		S.get(HotWordService.class).recordWord(keyword);
 		return new Gson().toJson(result);
 	}
 	

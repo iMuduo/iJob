@@ -1,8 +1,7 @@
-package cn.edu.ustc.site;
+package cn.edu.ustc.site.ajax;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import cn.edu.ustc.site.base.BaseAction;
+import cn.edu.ustc.site.enhance.SearchEnhance;
 
 public class SearchAjax extends BaseAction {
 	private static final long serialVersionUID = 1756055658352396036L;
@@ -27,12 +26,8 @@ public class SearchAjax extends BaseAction {
 
 	private int index;
 
-	public String execute() throws IOException{
-		getResponse().setContentType ("text/html;charset=utf-8");
-		PrintWriter writer=getResponse().getWriter();
-		writer.println(new SearchEnhance(getKeyword()).getJson(getIndex()));
-		writer.flush();
-		writer.close();
+	public String execute(){
+		writer(new SearchEnhance(getKeyword()).getJson(getIndex()));
 		return SUCCESS;
 	}
 

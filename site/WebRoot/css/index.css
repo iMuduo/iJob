@@ -1,0 +1,82 @@
+* {
+	margin: 0px;
+	font-family: Microsoft YaHei !important;
+}
+
+body {
+	background-color: #ffffff;
+	cursor: url("img/click.cur");
+}
+
+#header {
+	width: 100%;
+	height: 30px;
+	background: black;
+	color: white;
+	font-size: 16px;
+	line-height:30px;
+	position: relative;
+	text-align: right;
+}
+
+#header > a {
+	padding-right: 10px;
+	padding-left: 10px;
+	cursor: pointer;
+	vertical-align: top;
+}
+
+#search {
+	height: 250px;
+	width: 100%;
+	position: relative;
+	text-align: center;
+}
+
+#search >.logo {
+	margin-top: 70px;
+}
+
+
+input[name='keyword'] {
+	width: 400px;
+	height: 35px;
+	font-size: 20px;
+}
+
+input[name='go'] {
+	width: 120px;
+	font-size: 30px;
+	top:-3px;
+	line-height:35px;
+	padding: 0px !important;
+	color:#CCCCCC !important;
+}
+
+input[name='go']:hover{
+	color:#1AB9FB !important;
+}
+
+.sp{
+	width: 2px;
+	height:90%;
+	background-color: gray;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+#hotword{
+	margin:auto;
+	width: 530px;
+	height:100px;
+	border:1px solid #CCCCCC;
+}
+
+#hotword span{
+	line-height: 30px;
+	margin:5px;
+	color: red;
+	display: inline-block;
+	cursor:pointer;
+	text-decoration: underline;
+}

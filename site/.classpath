@@ -7,8 +7,8 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.struts2.MYECLIPSE_STRUTS21_CORE"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mongodb_driver"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/gson"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/pinyin"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mycommon"/>
-	<classpathentry kind="lib" path="D:/jar/common.jar"/>
-	<classpathentry kind="lib" path="D:/jar/gson-2.2.4.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

@@ -1,11 +1,12 @@
 package cn.edu.ustc.site.base;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -30,4 +31,18 @@ public class BaseAction extends ActionSupport{
 			}
 			return "";
 	}
+	
+	protected void writer(String content) {
+		getResponse().setContentType ("text/html;charset=utf-8");
+		PrintWriter writer;
+		try {
+			writer = getResponse().getWriter();
+			writer.println(content);
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

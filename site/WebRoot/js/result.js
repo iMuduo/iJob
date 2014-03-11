@@ -20,29 +20,24 @@ var index=0;
 var tpl;
 var on=false;
 function loadPage(i){
-	$.ajax({
-		type:'post',
-		url:'page',
-		data:"keyword="+$("#keyword").text().trim()+"&index="+i,
-		dataType:'',
-		success:function(r){
-			var list=eval("("+r+")");
-			for(var i=0;i<list.length;i++)
+	J.post('page',{keyword:$("#keyword").text().trim(),index:i},function(r){
+		var list=eval("("+r+")");
+		for(var i=0;i<list.length;i++)
+		{
+			var item=tpl;
+			for(var p in list[i])
 			{
-				var item=tpl;
-				for(var p in list[i])
-				{
-					var kw=$("#keyword").text().trim();
-					item=item.replace("{"+p+"}",list[i][p].replaceAll(kw,"<em>"+kw+"</em>",true));
-				}
-				$("#result").append(item);
+				var kw=$("#keyword").text().trim();
+				item=item.replace("{"+p+"}",list[i][p].replaceAll(kw,"<em>"+kw+"</em>",true));
 			}
-			on=true;
+			$("#result").append(item);
 		}
-		});
+		on=true;
+	});
 }
 
 $(function(){
+	J.autoComplete("input[name='keyword']","hotword!autoComplete");
 	$.get("item",function(r){
 		tpl=r;
 		loadPage(index++);
