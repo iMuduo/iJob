@@ -1,5 +1,6 @@
 package cn.edu.ustc.analyzer;
 
+import cn.edu.ustc.analyzer.rank.PageRankHelper;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -33,6 +34,8 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+    	//PageRankHelper.getRank
+    	long rank=PageRankHelper.getRank("百度");
+        assertTrue( rank ==100000000 );
     }
 }

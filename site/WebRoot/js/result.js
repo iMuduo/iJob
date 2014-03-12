@@ -1,11 +1,4 @@
 var keyword;
-String.prototype.replaceAll = function(reallyDo, replaceWith, ignoreCase) {  
-    if (!RegExp.prototype.isPrototypeOf(reallyDo)) {  
-        return this.replace(new RegExp(reallyDo, (ignoreCase ? "gi": "g")), replaceWith);  
-    } else {  
-        return this.replace(reallyDo, replaceWith);  
-    }  
-};
 //$(document).ready(function(){
 //	var spans=$("td>.content");
 //	keyword=$("#keyword").text().trim();
@@ -18,21 +11,34 @@ String.prototype.replaceAll = function(reallyDo, replaceWith, ignoreCase) {
 //});
 var index=0;
 var tpl;
+var count=0;
 var on=false;
 function loadPage(i){
 	J.post('page',{keyword:$("#keyword").text().trim(),index:i},function(r){
 		var list=eval("("+r+")");
+		count+=list.length;
 		for(var i=0;i<list.length;i++)
 		{
 			var item=tpl;
 			for(var p in list[i])
 			{
 				var kw=$("#keyword").text().trim();
-				item=item.replace("{"+p+"}",list[i][p].replaceAll(kw,"<em>"+kw+"</em>",true));
+				var field=list[i][p].replace(del,"");
+				item=item.replaceAll("{"+p+"}",field.replaceAll(kw,"<em>"+kw+"</em>",true));
 			}
 			$("#result").append(item);
 		}
-		on=true;
+		
+		$(".simple").click(function(e){
+			$(e.currentTarget).next().toggle("clip",800);
+		});
+		
+		$(".detail").click(function(e){
+			$(e.currentTarget).toggle("clip",800);
+		});
+		
+		if(count < parseInt($("#count").text()))
+			on=true;
 	});
 }
 

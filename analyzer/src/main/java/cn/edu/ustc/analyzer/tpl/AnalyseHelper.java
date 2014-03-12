@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
 import cn.edu.ustc.analyzer.conf.AnalyseConfigure;
+import cn.edu.ustc.analyzer.rank.PageRankHelper;
 import cn.edu.ustc.common.EasyDebug;
 import cn.edu.ustc.common.info.JobInfo1;
 
@@ -21,9 +21,11 @@ public final class AnalyseHelper {
 			
 			if(result == null)
 				return null;
-			
-			result.put("cpnm", doc.select(AnalyseConfigure.getCpnm(url)).text());
-			result.put("jbnm", doc.select(AnalyseConfigure.getJbnm(url)).text());
+			String cpnm=doc.select(AnalyseConfigure.getCpnm(url)).text();
+			String jbnm=doc.select(AnalyseConfigure.getJbnm(url)).text();
+			result.put("rank",String.valueOf(PageRankHelper.getRank(cpnm)+PageRankHelper.getRank(jbnm)));
+			result.put("cpnm", cpnm);
+			result.put("jbnm", jbnm);
 			result.put("origin", AnalyseConfigure.getWebName(url));
 			result.put("jburl", url);
 			result.put("cpurl", info.getCompany());

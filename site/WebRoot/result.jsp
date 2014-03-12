@@ -23,13 +23,12 @@
 <jsp:include page="base.jsp"></jsp:include>
 <script type="text/javascript" src="js/result.js"></script>
 <script>
-var list=['Java','Js','JJ'];
-	$(function(){
-		$("input[name='keyword']").autocomplete({
-			source: list
-		});
+	var del="正在加载更多城市";
+	$(function() {
 		$("input[type='submit']").button();
-		$("#result").accordion({header:'h3'});
+		$("#search img").click(function(){
+			J.goIndex();
+		});
 	});
 </script>
 </head>
@@ -37,8 +36,7 @@ var list=['Java','Js','JJ'];
 <body>
 	<div id="search">
 		<form action="search" method="post">
-			<img src="css/img/logo.png" />
-			<input type="text" name="keyword" /> 
+			<img src="css/img/logo.png" /> <input type="text" name="keyword" />
 			<input type="submit" value="Go" name="go" />
 		</form>
 	</div>
@@ -47,9 +45,10 @@ var list=['Java','Js','JJ'];
 		<s:property value="count"></s:property>
 		条结果
 	<p>
-	<div id="result">
-	</div>
+	<div id="result"></div>
 	<label id="keyword" style="display:none"> <s:property
 			value="keyword" /> </label>
+	<label id="count" style="display:none"> <s:property
+			value="count" /> </label>
 </body>
 </html>

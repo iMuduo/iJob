@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import cn.edu.ustc.common.MongoDB;
 import cn.edu.ustc.common.StringHelper;
+import cn.edu.ustc.site.base.RegExpFilter;
 import cn.edu.ustc.site.base.S;
 import cn.edu.ustc.site.service.HotWordService;
 import com.google.gson.Gson;
@@ -41,13 +42,13 @@ public class SearchEnhance {
 	}
 	
 	private DBCursor getPage(int i){
-		return getQuery().skip(i).limit(per);
+		return getQuery().skip(i*per).limit(per);
 	}
 	
 	private DBCursor getQuery(){
 		DBCollection db=MongoDB.getCollection("jobInfo2");
 		BasicDBObject conditon=new BasicDBObject();
-		conditon.put("jbnm",  Pattern.compile(String.format("^.*%s.*$", keyword), Pattern.CASE_INSENSITIVE));
-		return db.find(conditon);
+		conditon.put("jbnm",  Pattern.compile(String.format("^.*%s.*$", RegExpFilter.filter(keyword)), Pattern.CASE_INSENSITIVE));
+		return db.find(conditon).sort(new BasicDBObject("rank",-1));
 	}
 }

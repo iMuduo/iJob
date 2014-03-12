@@ -53,6 +53,7 @@
 		</form>
 	</div>
 	<div id="hotword">
+	<p>热门搜索</p>
 	</div>
 </body>
 </html>

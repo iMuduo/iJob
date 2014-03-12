@@ -25,7 +25,9 @@ public class BaseAction extends ActionSupport{
 	
 	protected String getParameter(String key){
 			try {
-				return new String(getRequest().getParameter(key).getBytes("utf-8"),"utf-8");
+				String value=getRequest().getParameter(key);
+				if(value!=null)
+					return new String(value.getBytes("utf-8"),"utf-8");
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}

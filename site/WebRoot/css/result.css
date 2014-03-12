@@ -53,15 +53,23 @@ input[name='go']:hover{
 }
 
 #result{
-	padding-left: 20px;
+	padding-left: 24px;
 }
 
 table {
-	width: 100%;
+	width:1200px;
 	table-layout: fixed;
-	border-bottom: 1px dashed gray;
 	padding-top: 3px;
 	position: relative;
+	border-collapse: collapse;
+}
+
+.simple .header{
+	background-color:#cccccc;
+}
+
+.detail{
+	display: none;
 }
 
 em {
@@ -75,6 +83,7 @@ td {
 
 .desc {
 	font-weight: bold;
+	color: black;
 }
 
 .tip {
@@ -83,5 +92,8 @@ td {
 	padding-left: 23px;
 }
 a{
+	color:black;
+}
+a:hover{
 	color:green;
 }

@@ -68,3 +68,23 @@ J.each=function(l,f){
 	for(var i=0;i<l.length;i++)
 		f(l[i],i);
 };
+
+J.filterRegExp=function(str){
+	return str.replace(/([\.\$\^\{\}\[\]\(\)\|\*\+\?\\])/g,"\\$1");
+};
+
+String.prototype.replaceAll = function(reallyDo, replaceWith, ignoreCase) {  
+    if (!RegExp.prototype.isPrototypeOf(reallyDo)) {  
+        return this.replace(new RegExp(J.filterRegExp(reallyDo), (ignoreCase ? "gi": "g")), replaceWith);  
+    } else {  
+        return this.replace(reallyDo, replaceWith);  
+    }  
+};
+
+J.goIndex=function(){
+	location.href="";
+};
+
+J.isVisible=function(sel){
+	return $(sel).css("display")!="none";
+};
