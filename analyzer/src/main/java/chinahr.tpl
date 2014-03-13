@@ -1,4 +1,4 @@
-公司规模：{{cpscale}}
+﻿公司规模：{{cpscale}}
 公司类型：{{cptype}}
 公司行业：{{cptrade}}
 性别要求：{{genderrq}}
@@ -9,4 +9,8 @@
 学历要求：{{degreerq}}
 薪资待遇：{{salary}}
 工作经验：{{wkxp}}
-工作地点： {{wkplace}}
+工作地点：{{wkplace}}
+职位描述{{jbdesc}}
+任职条件{{wkrq}}
+相关福利：{{benefit}}
+分享到：{{x1}}

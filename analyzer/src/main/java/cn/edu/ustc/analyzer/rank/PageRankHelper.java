@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 
+import cn.edu.ustc.common.StringHelper;
+
 public class PageRankHelper {
 	private final static String url="http://www.baidu.com/baidu";
 	private final static Map<String,String> data=new Hashtable<String,String>();
@@ -18,21 +20,20 @@ public class PageRankHelper {
 	public static long getRank(String word){
 		if(cache.containsKey(word))
 			return cache.get(word);
-		String rank=null;
+		String target=null;
 		try {
 			data.put("word", word);
-			rank=Jsoup.connect(url).data(data).get().select(".nums").text();
+			target=Jsoup.connect(url).data(data).get().select(".nums").text();
 			Pattern pattern=Pattern.compile("\\d");
-			Matcher match=pattern.matcher(rank);
+			Matcher match=pattern.matcher(target);
 			StringBuffer sb=new StringBuffer();
 			while(match.find())
 				sb.append(match.group());
-			rank=sb.toString();
-			put(word, rank);
+			put(word, sb.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return Long.valueOf(rank);
+		return cache.get(word);
 	}
 	
 	private static void put(String key,Long value){
@@ -41,6 +42,8 @@ public class PageRankHelper {
 	}
 	
 	private static void put(String key,String value){
+		if(StringHelper.isNullOrEmpty(value))
+			value="10000";
 		put(key, Long.valueOf(value));
 	}
 }

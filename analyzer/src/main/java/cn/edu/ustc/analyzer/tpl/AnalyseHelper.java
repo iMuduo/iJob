@@ -2,20 +2,19 @@ package cn.edu.ustc.analyzer.tpl;
 
 import java.io.IOException;
 import java.util.Map;
-
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import cn.edu.ustc.analyzer.conf.AnalyseConfigure;
 import cn.edu.ustc.analyzer.rank.PageRankHelper;
 import cn.edu.ustc.common.EasyDebug;
 import cn.edu.ustc.common.info.JobInfo1;
+import cn.edu.ustc.common.net.UrlFetchHelper;
 
 public final class AnalyseHelper {
 	public static Map<String, ?> getResult(JobInfo1 info) {
 		String url=info.getJob();
 		Map<String, String> result=null;
 		try {
-			Document doc = Jsoup.connect(url).get();
+			Document doc = UrlFetchHelper.getDocument(url);
 			result = TemplateAnalyseFactory.geTemplateAnalyse(url).analyseContent(doc.select(
 					AnalyseConfigure.getTarget(url)).text());
 			

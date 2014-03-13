@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.edu.ustc.common.StringHelper;
+
 public class TemplateAnalyse {
 	private String tpl = null;
 	private Map<String, String> result = null;
@@ -53,7 +55,7 @@ public class TemplateAnalyse {
 
 		while (m.find()) {
 			for (String key : result.keySet())
-				result.put(key, m.group(key));
+				result.put(key, StringHelper.filter(m.group(key)));
 			return new Hashtable<>(result);
 		}
 		return null;
