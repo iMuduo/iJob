@@ -9,7 +9,6 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import cn.edu.ustc.common.EasyDebug;
 import cn.edu.ustc.spider.conf.inf.ISpiderConfigure;
 import cn.edu.ustc.spider.conf.inf.IWebSite;
 import cn.edu.ustc.spider.conf.inf.IWebSiteFactory;
@@ -56,7 +55,6 @@ public class SpiderConfigure implements ISpiderConfigure{
 				Element company = (Element) e
 						.selectSingleNode("./result_list/info[@name='company']");
 				site.setCompanyAt(company.getText());
-				EasyDebug.debug(site.getSearchUrl());
 				this.websites.add(site);
 			}
 		}

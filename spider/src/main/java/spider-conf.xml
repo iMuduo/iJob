@@ -24,7 +24,7 @@
 			</result_list>
 		</site>
 		<site priority="1" name="zhaopin" maxPage="100">
-			<search-url><![CDATA[http://sou.zhaopin.com/Jobs/searchresult.ashx?jl=%E5%8C%97%E4%BA%AC&kw={{keyword}}&sm=0&sf=0&sg=5e01f17ce73b4d14a760a1441ecb156b]]></search-url>
+			<search-url><![CDATA[http://sou.zhaopin.com/jobs/SearchResult.ashx?in=210500%3B160000%3B160500%3B160200%3B300100%3B160100%3B160600&jl=%E5%8C%97%E4%BA%AC%2B%E4%B8%8A%E6%B5%B7%2B%E5%B9%BF%E5%B7%9E%2B%E6%B7%B1%E5%9C%B3%2B%E5%A4%A9%E6%B4%A5&kw={{keyword}}&sm=0&sf=0]]></search-url>
 			<page_param><![CDATA[&p=]]></page_param>
 			<result_list>
 				<info name="job"><![CDATA[.Jobname a]]></info>
@@ -32,7 +32,7 @@
 			</result_list>
 		</site>
 		<site priority="44" name="51job" maxPage="100">
-			<search-url><![CDATA[http://search.51job.com/jobsearch/search_result.php?fromJs=1&jobarea=000000%2C00&district=000000&funtype=0000&industrytype=00&issuedate=9&providesalary=99&keyword={{keyword}}&keywordtype=2&lang=c&stype=2&postchannel=0001&workyear=99&cotype=99&degreefrom=99&jobterm=01&lonlat=0%2C0&radius=-1&ord_field=0&list_type=0&fromType=14]]></search-url>
+			<search-url><![CDATA[http://search.51job.com/jobsearch/search_result.php?fromJs=1&jobarea=000000%2C00&district=000000&funtype=0000&industrytype=00&issuedate=9&providesalary=99&keyword={{keyword}}&keywordtype=2&lang=c&stype=1&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=01&lonlat=0%2C0&radius=-1&ord_field=0&list_type=0&fromType=14]]></search-url>
 			<page_param><![CDATA[&curr_page=]]></page_param>
 			<result_list>
 				<info name="job"><![CDATA[.resultList .jobname]]></info>

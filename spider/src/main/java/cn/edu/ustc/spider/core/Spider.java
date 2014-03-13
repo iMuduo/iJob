@@ -7,12 +7,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
-
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
-
 import cn.edu.ustc.common.MongoDB;
+import cn.edu.ustc.common.encode.CharCodeHelper;
 import cn.edu.ustc.common.info.JobInfo1;
 import cn.edu.ustc.spider.conf.impl.KeywordConfigure;
 import cn.edu.ustc.spider.conf.inf.IKeywordConfigure;
@@ -42,7 +41,10 @@ public class Spider implements Runnable {
 			while (!site.isMaxPages()) {
 				String url = site.getNextUrl();
 				for (int i = 0; i < keywords.getCount(); i++) {
-					infoList=site.getJobInfo(url.replace("{{keyword}}", keywords.getKeyword(i)));
+					String keyword=keywords.getKeyword(i);
+					if(url.indexOf("chinahr.com")!=-1)
+						keyword=CharCodeHelper.doubleEncoder(keyword);
+					infoList=site.getJobInfo(url.replace("{{keyword}}", keyword));
 					for (JobInfo1 info : infoList) {
 						DBObject object = new BasicDBObject();
 						object.put("_id", info.getJob());

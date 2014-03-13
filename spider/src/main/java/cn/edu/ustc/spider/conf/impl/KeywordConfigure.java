@@ -1,7 +1,6 @@
 package cn.edu.ustc.spider.conf.impl;
 
 import java.util.List;
-
 import cn.edu.ustc.common.FileSmart;
 import cn.edu.ustc.spider.conf.inf.IKeywordConfigure;
 

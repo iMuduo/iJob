@@ -1,19 +1,16 @@
 package cn.edu.ustc.spider.conf.impl;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.apache.log4j.Logger;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-
+import cn.edu.ustc.common.EasyDebug;
 import cn.edu.ustc.common.info.JobInfo1;
+import cn.edu.ustc.common.net.UrlFetchHelper;
 import cn.edu.ustc.spider.conf.inf.IWebSite;
 
-public class WebSite implements IWebSite,Serializable{
+public class WebSite implements IWebSite, Serializable {
 	/**
 	 * 
 	 */
@@ -84,46 +81,42 @@ public class WebSite implements IWebSite,Serializable{
 
 	@Override
 	public List<JobInfo1> getJobInfo(String url) {
-		Logger logger = Logger.getLogger(getClass());
-		Document doc;
 		List<JobInfo1> jobList = new LinkedList<JobInfo1>();
-		try {
-			doc = Jsoup.connect(url).get();
-			Elements jobs = doc.select(jobAt);
-			Elements companys = doc.select(companyAt);
-			if (jobs.size() != companys.size())
-				logger.info(String
-						.format("fetch %1$s error,becasue job count:%2$d not equal company count:%3$d!",
-								url,jobs.size(),companys.size()));
-			else
-				for (int i = 0; i < jobs.size(); i++) {
-					JobInfo1 info = new JobInfo1();
-					info.setJob(jobs.get(i).attr("href"));
-					info.setCompany(companys.get(i).attr("href"));
-					jobList.add(info);
-				}
-		} catch (IOException e) {
-			logger.info(String.format("fetch %1$s error!", url));
-			//e.printStackTrace();
-		}
+		Document doc=UrlFetchHelper.getDocument(url);
+		Elements jobs = doc.select(jobAt);
+		Elements companys = doc.select(companyAt);
+		if (jobs.size() != companys.size())
+			EasyDebug
+					.log4j((String
+							.format("fetch %1$s error,becasue job count:%2$d not equal company count:%3$d!",
+									url, jobs.size(), companys.size())),
+							getClass());
+		else
+			for (int i = 0; i < jobs.size(); i++) {
+				JobInfo1 info = new JobInfo1();
+				info.setJob(jobs.get(i).attr("href"));
+				info.setCompany(companys.get(i).attr("href"));
+				jobList.add(info);
+			}
 		return jobList;
 	}
 
 	@Override
 	public int compareTo(IWebSite o) {
 		// TODO Auto-generated method stub
-		return new Integer(o.getPriority()).compareTo(new Integer(o.getPriority()));
+		return new Integer(o.getPriority()).compareTo(new Integer(o
+				.getPriority()));
 	}
 
 	@Override
 	public void setMaxPages(int max) {
 		// TODO Auto-generated method stub
-		this.max=max;
+		this.max = max;
 	}
 
 	@Override
 	public boolean isMaxPages() {
 		// TODO Auto-generated method stub
-		return max==currPage;
+		return max == currPage;
 	}
 }
