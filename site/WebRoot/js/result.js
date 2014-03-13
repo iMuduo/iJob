@@ -24,16 +24,19 @@ function loadPage(i){
 			{
 				var kw=$("#keyword").text().trim();
 				var field=list[i][p].replace(del,"");
-				item=item.replaceAll("{"+p+"}",field.replaceAll(kw,"<em>"+kw+"</em>",true));
+				if((!kw) && (kw!=""))
+					field=field.replaceAll(kw,"<em>"+kw+"</em>",true);
+				field=field.replace(/[^\d+](\d{1,2}[、\.])/g,"<br>$1");
+				item=item.replaceAll("{"+p+"}",field);
 			}
 			$("#result").append(item);
 		}
 		
-		$(".simple").click(function(e){
+		$(".simple").dblclick(function(e){
 			$(e.currentTarget).next().toggle("clip",800);
 		});
 		
-		$(".detail").click(function(e){
+		$(".detail").dblclick(function(e){
 			$(e.currentTarget).toggle("clip",800);
 		});
 		
