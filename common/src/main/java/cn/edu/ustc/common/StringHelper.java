@@ -17,4 +17,10 @@ public final class StringHelper {
 	{
 		return obj!=null;
 	}
+	
+	public static String filter(Object obj){
+		if(obj==null)
+			return "";
+		return obj.toString();
+	}
 }
