@@ -2,7 +2,6 @@ package cn.edu.ustc.analyzer;
 
 import java.io.IOException;
 import java.util.Map;
-
 import cn.edu.ustc.analyzer.tpl.AnalyseHelper;
 import cn.edu.ustc.common.DBHelper;
 import cn.edu.ustc.common.EasyDebug;
@@ -18,7 +17,7 @@ public class Program {
 		long i=0;
 		DBCollection db = MongoDB.getCollection("jobInfo1");
 		while (true) {
-			DBObject obj = db.findOne();
+			DBObject obj = db.findAndRemove(null);
 
 			if (obj == null)
 			{
@@ -35,12 +34,13 @@ public class Program {
 			if (result != null) {
 				JobInfo2 info2 = new JobInfo2();
 				info2.setMap(result);
+				info2.set_id(info1.getJob());
 				DBHelper.save(MongoDB.getCollection("jobInfo2"), info2);
 				EasyDebug.debug(String.valueOf(++i));
 			}
 			else
 				EasyDebug.debug(info1.getJob());
-			db.remove(obj);
+
 		}
 	}
 }

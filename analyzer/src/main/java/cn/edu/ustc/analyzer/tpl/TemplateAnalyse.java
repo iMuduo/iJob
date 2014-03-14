@@ -26,7 +26,7 @@ public class TemplateAnalyse {
 			if (m.find())
 				field = m.group(1);
 			Pattern pattern = Pattern.compile(i.replaceAll(
-					"\\{\\{([^}}]+)\\}\\}([^{{]+|$)", "(?<$1>.*)$2"),
+					"\\{\\{([^}}]+)\\}\\}([^{{]+|$)", "(?<$1>.*?)$2"),
 					Pattern.DOTALL | Pattern.MULTILINE
 							| Pattern.CASE_INSENSITIVE);
 			patterns.put(field, pattern);
