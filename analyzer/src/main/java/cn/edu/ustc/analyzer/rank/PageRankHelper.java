@@ -11,6 +11,7 @@ import cn.edu.ustc.common.StringHelper;
 
 public class PageRankHelper {
 	private final static String url="http://www.baidu.com/baidu";
+	private final static String defaultRank="10000";
 	private final static Map<String,String> data=new Hashtable<String,String>();
 	private final static Map<String, Long> cache=new Hashtable<String,Long>();
 	static{
@@ -18,6 +19,7 @@ public class PageRankHelper {
 		data.put("word", "");
 	}
 	public static long getRank(String word){
+		put(word, "");
 		if(cache.containsKey(word))
 			return cache.get(word);
 		String target=null;
@@ -43,7 +45,7 @@ public class PageRankHelper {
 	
 	private static void put(String key,String value){
 		if(StringHelper.isNullOrEmpty(value))
-			value="10000";
+			value=defaultRank;
 		put(key, Long.valueOf(value));
 	}
 }
