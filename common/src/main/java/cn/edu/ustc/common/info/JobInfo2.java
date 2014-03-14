@@ -6,8 +6,16 @@ import cn.edu.ustc.common.ActiveRecord;
 public class JobInfo2 extends ActiveRecord {
 	private String cpnm,jbnm,cpscale,cptype,cptrade,genderrq,rcnos,agerq,wkform,deadline,degreerq,salary,wkxp,wkplace,jbdesc,wkrq,benefit,date,cpinfo,origin,jburl,cpurl;
 
-	private String rank;
+	private String rank,_id;
 	
+	public String get_id() {
+		return _id;
+	}
+
+	public void set_id(String _id) {
+		this._id = _id;
+	}
+
 	public String getRank() {
 		return rank;
 	}
