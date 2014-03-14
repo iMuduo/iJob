@@ -7,29 +7,31 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cn.edu.ustc.common.StringHelper;
+import cn.edu.ustc.common.EasyDebug;
 
 public class TemplateAnalyse {
-	private String tpl = null;
-	private Map<String, String> result = null;
+	private Map<String, Pattern> patterns = null;
 
-	private void prepare(String tpl) {
-		this.tpl = tpl;
-		this.result = new Hashtable<>();
+	private void prepare(List<String> list) {
 		Pattern p = Pattern.compile("\\{\\{([^}}]+)\\}\\}");
-		Matcher m = p.matcher(tpl);
-		while (m.find())
-			result.put(m.group(1), "");
-		this.tpl = tpl.replaceAll("\\{\\{([^}}]+)\\}\\}([^{{]+|$)",
-				"(?<$1>.*)$2");
-	}
+		for (String i : list) {
+			Matcher m = p.matcher(i);
+			String field = "";
+			if (m.find())
+				field = m.group(1);
+			Pattern pattern = Pattern.compile(i.replaceAll(
+					"\\{\\{([^}}]+)\\}\\}([^{{]+|$)", "(?<$1>.*)$2"),
+					Pattern.DOTALL | Pattern.MULTILINE
+							| Pattern.CASE_INSENSITIVE);
+			patterns.put(field, pattern);
+		}
 
-	public TemplateAnalyse(String tpl, Object o) {
-		prepare(tpl);
 	}
 
 	public TemplateAnalyse(String pathname) throws IOException {
@@ -37,12 +39,15 @@ public class TemplateAnalyse {
 	}
 
 	public TemplateAnalyse(InputStream in) throws IOException {
+
+		this.patterns = new Hashtable<>();
+
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
 		String line = null;
-		StringBuffer sb = new StringBuffer();
+		List<String> list = new LinkedList<String>();
 		while ((line = br.readLine()) != null)
-			sb.append(line.replaceAll("##.*", ""));
-		prepare(sb.toString());
+			list.add((line.replaceAll("##.*", "")));
+		prepare(list);
 	}
 
 	public TemplateAnalyse(File file) throws IOException {
@@ -50,18 +55,20 @@ public class TemplateAnalyse {
 	}
 
 	public Map<String, String> analyseContent(String content) {
-		Pattern p = Pattern.compile(tpl);
-		Matcher m = p.matcher(content);
-
-		while (m.find()) {
-			for (String key : result.keySet())
-				result.put(key, StringHelper.filter(m.group(key)));
-			return new Hashtable<>(result);
+		
+		Hashtable<String, String> result=new Hashtable<>();
+		
+		for(String key :patterns.keySet())
+		{
+			Matcher m=patterns.get(key).matcher(content);
+			String value="";
+			if(m.groupCount()>2)
+				EasyDebug.debug("Template tags error！"+patterns.get(key).pattern());
+			if(m.find())
+				value=m.group(1);
+			result.put(key, value);
 		}
-		return null;
-	}
-
-	public Map<String, String> getResult() {
+		
 		return result;
 	}
 
