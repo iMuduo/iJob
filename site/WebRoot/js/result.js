@@ -23,9 +23,13 @@ function loadPage(i){
 			for(var p in list[i])
 			{
 				var kw=$("#keyword").text().trim();
+				kw=kw||false;
 				var field=list[i][p].replace(del,"");
-				if((!kw) && (kw!=""))
-					field=field.replaceAll(kw,"<em>"+kw+"</em>",true);
+				if(kw)
+				{
+					kw=J.filterRegExp(kw);
+					field=field.replace(new RegExp("("+kw+")","gi"),"<em>$1</em>");
+				}
 				field=field.replace(/[^\d+](\d{1,2}[、\.])/g,"<br>$1");
 				item=item.replaceAll("{"+p+"}",field);
 			}
