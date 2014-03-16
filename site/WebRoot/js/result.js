@@ -14,7 +14,7 @@ var tpl;
 var count=0;
 var on=false;
 function loadPage(i){
-	J.post('page',{keyword:$("#keyword").text().trim(),index:i},function(r){
+	J.post('page',{keyword:$("#keyword").text().trim(),wkplace:$("#wkplace").text().trim(),cpnm:$("#cpnm").text().trim(),index:i},function(r){
 		var list=eval("("+r+")");
 		count+=list.length;
 		for(var i=0;i<list.length;i++)
@@ -23,13 +23,15 @@ function loadPage(i){
 			for(var p in list[i])
 			{
 				var kw=$("#keyword").text().trim();
-				kw=kw||false;
+				var cpnm=$("#cpnm").text().trim();
+				var wkplace=$("#wkplace").text().trim();
 				var field=list[i][p].replace(del,"");
-				if(kw)
-				{
-					kw=J.filterRegExp(kw);
-					field=field.replace(new RegExp("("+kw+")","gi"),"<em>$1</em>");
-				}
+				if((kw!="") &&(p=="jbnm"))
+					field=field.replace(new RegExp("("+J.filterRegExp(kw)+")","gi"),"<em>$1</em>");
+				if((cpnm!="") &&(p=="cpnm"))
+					field=field.replace(new RegExp("("+J.filterRegExp(cpnm)+")","gi"),"<em>$1</em>");
+				if((wkplace!="") &&(p=="wkplace"))
+					field=field.replace(new RegExp("("+J.filterRegExp(wkplace)+")","gi"),"<em>$1</em>");
 				field=field.replace(/[^\d+](\d{1,2}[、\.])/g,"<br>$1");
 				item=item.replaceAll("{"+p+"}",field);
 			}

@@ -18,9 +18,11 @@ import com.mongodb.DBObject;
 public class SearchEnhance {
 	private final String[] fields=new String[]{"cpnm","jbnm","cpscale","cptype","cptrade","genderrq","rcnos","agerq","wkform","deadline","degreerq","salary","wkxp","wkplace","jbdesc","wkrq","benefit","date","cpinfo","origin","jburl","cpurl"};
 	private final int per=20;
-	private String keyword;
-	public SearchEnhance(String keyword){
+	private String keyword,wkplace,cpnm;
+	public SearchEnhance(String keyword,String wkplace,String cpnm){
 		this.keyword=keyword;
+		this.wkplace=wkplace;
+		this.cpnm=cpnm;
 	}
 	public String getJson(int i){
 		DBCursor query=getPage(i);
@@ -49,6 +51,8 @@ public class SearchEnhance {
 		DBCollection db=MongoDB.getCollection("jobInfo2");
 		BasicDBObject conditon=new BasicDBObject();
 		conditon.put("jbnm",  Pattern.compile(String.format("^.*%s.*$", RegExpFilter.filter(keyword)), Pattern.CASE_INSENSITIVE));
+		conditon.put("cpnm",  Pattern.compile(String.format("^.*%s.*$", RegExpFilter.filter(cpnm)), Pattern.CASE_INSENSITIVE));
+		conditon.put("wkplace",  Pattern.compile(String.format("^.*%s.*$", RegExpFilter.filter(wkplace)), Pattern.CASE_INSENSITIVE));
 		return db.find(conditon).sort(new BasicDBObject("rank",-1));
 	}
 }

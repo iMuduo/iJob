@@ -8,11 +8,33 @@ import cn.edu.ustc.site.enhance.SearchEnhance;
 public class SearchAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	
-	private String keyword;
+	private String keyword,wkplace,cpnm;
+	public String getWkplace() {
+		return wkplace;
+	}
+
+	public void setWkplace(String wkplace) {
+		this.wkplace = wkplace;
+	}
+
+	public String getCpnm() {
+		return cpnm;
+	}
+
+	public void setCpnm(String cpnm) {
+		this.cpnm = cpnm;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 	private int count;
 	public String search() throws UnsupportedEncodingException{
 		keyword=getParameter("keyword");
-		setCount(new SearchEnhance(keyword).getCount());
+		wkplace=getParameter("wkplace");
+		cpnm=getParameter("cpnm");
+		setCount(new SearchEnhance(keyword,wkplace,cpnm).getCount());
 		return SUCCESS;
 	}
 	

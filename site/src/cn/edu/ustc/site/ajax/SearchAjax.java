@@ -6,7 +6,23 @@ import cn.edu.ustc.site.enhance.SearchEnhance;
 public class SearchAjax extends BaseAction {
 	private static final long serialVersionUID = 1756055658352396036L;
 
-	private String keyword;
+	private String keyword,wkplace,cpnm;
+
+	public String getWkplace() {
+		return wkplace;
+	}
+
+	public void setWkplace(String wkplace) {
+		this.wkplace = wkplace;
+	}
+
+	public String getCpnm() {
+		return cpnm;
+	}
+
+	public void setCpnm(String cpnm) {
+		this.cpnm = cpnm;
+	}
 
 	public String getKeyword() {
 		return keyword;
@@ -27,7 +43,7 @@ public class SearchAjax extends BaseAction {
 	private int index;
 
 	public String execute(){
-		writer(new SearchEnhance(getKeyword()).getJson(getIndex()));
+		writer(new SearchEnhance(getKeyword(),getWkplace(),getCpnm()).getJson(getIndex()));
 		return SUCCESS;
 	}
 

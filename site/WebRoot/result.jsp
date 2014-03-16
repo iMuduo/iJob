@@ -48,6 +48,10 @@
 	<div id="result"></div>
 	<label id="keyword" style="display:none"> <s:property
 			value="keyword" /> </label>
+	<label id="wkplace" style="display:none"> <s:property
+			value="wkplace" /> </label>
+	<label id="cpnm" style="display:none"> <s:property
+			value="cpnm" /> </label>
 	<label id="count" style="display:none"> <s:property
 			value="count" /> </label>
 </body>

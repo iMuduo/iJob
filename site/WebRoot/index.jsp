@@ -35,25 +35,48 @@
 			$("input[name='keyword']").val($(e.target).text());
 			$("form").submit();
 		});
+		$("#header p").click(function(){
+			if(!J.isVisible("#advance"))
+			{
+				$(this).text("普通搜索");
+				$("#advance").slideDown(1000);
+			}
+			else
+			{
+				$(this).text("高级搜索");
+				$("#advance").slideUp(1000);
+			}
+		});
 		});
 	});
 </script>
 </head>
 <body>
 	<div id="header">
-		<a>登录</a>
-		<div class="sp"></div>
-		<a>注册</a>
+		<p>高级搜索</p>
 	</div>
 	<div id="search">
 		<img class="logo" src="css/img/iJob.png" />
 		<form action="search" method="post">
 			<input type="text" name="keyword" /> <input type="submit" value="Go"
 				name="go" />
+			<div id="advance">
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<span>公司名称：</span><input type="text" name="cpnm" /> 
+					</td>
+					<td style="padding-left:10px;">
+						<span>工作地点：</span><input type="text" name="wkplace" /> 
+					</td>
+				<tr>
+			</table>
+			</div>
 		</form>
 	</div>
 	<div id="hotword">
 	<p>热门搜索</p>
 	</div>
+	
 </body>
 </html>
