@@ -1,5 +1,6 @@
 package cn.edu.ustc.spider;
 
+import cn.edu.ustc.spider.core.ChinaHrFilter;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -33,6 +34,13 @@ public class AppTest
      */
     public void testApp()
     {
+    	String re="C/C++";
+        re=ChinaHrFilter.filter(re);
+    	System.out.println(re);
+    	re=ChinaHrFilter.filter("C#");
+    	System.out.println(re);
+    	re=ChinaHrFilter.filter(".NET");
+    	System.out.println(re);
         assertTrue( true );
     }
 }
