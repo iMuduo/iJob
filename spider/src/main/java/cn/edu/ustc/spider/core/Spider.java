@@ -10,18 +10,22 @@ import java.util.List;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
+
+import cn.edu.ustc.common.EasyDebug;
 import cn.edu.ustc.common.MongoDB;
 import cn.edu.ustc.common.info.JobInfo1;
 import cn.edu.ustc.spider.conf.impl.KeywordConfigure;
 import cn.edu.ustc.spider.conf.inf.IKeywordConfigure;
 import cn.edu.ustc.spider.conf.inf.ISpiderConfigure;
 import cn.edu.ustc.spider.conf.inf.IWebSite;
+import cn.edu.ustc.spider.patch.ChinaHrFilter;
 
 public class Spider implements Runnable {
 	/**
 	 * 
 	 */
 	private static int index = 0;
+	private static long count = 0;
 	private static ISpiderConfigure conf = null;
 	private static List<IWebSite> list = null;
 
@@ -50,6 +54,7 @@ public class Spider implements Runnable {
 						object.put("job", info.getJob());
 						object.put("company", info.getCompany());
 						db.insert(object);
+						EasyDebug.debug(String.valueOf(++count));
 					}
 				}
 			}

@@ -1,6 +1,6 @@
 package cn.edu.ustc.spider;
 
-import cn.edu.ustc.spider.core.ChinaHrFilter;
+import cn.edu.ustc.spider.patch.ChinaHrFilter;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
