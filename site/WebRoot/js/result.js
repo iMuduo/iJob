@@ -32,6 +32,7 @@ function loadPage(i){
 					field=field.replace(new RegExp("("+J.filterRegExp(cpnm)+")","gi"),"<em>$1</em>");
 				if((wkplace!="") &&(p=="wkplace"))
 					field=field.replace(new RegExp("("+J.filterRegExp(wkplace)+")","gi"),"<em>$1</em>");
+				if(p=="wkrq" ||p=="jbdesc"||p=="benefit"||p=="cpinfo")
 				field=field.replace(/[^\d+](\d{1,2}[、\.])/g,"<br>$1");
 				item=item.replaceAll("{"+p+"}",field);
 			}

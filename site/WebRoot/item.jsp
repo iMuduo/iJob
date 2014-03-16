@@ -1,7 +1,7 @@
 <table class="simple">
 	<tr class="header">
 		<td>
-			<span class="desc">公司名称：</span><span class="content"><a href="{cpurl}">{cpnm}</a></span>
+			<span class="desc">公司名称：</span><span class="content"><a target="_blank" href="{cpurl}">{cpnm}</a></span>
 		</td>
 		<td>
 			<span class="desc">工作名称：</span><span class="content">{jbnm}</span>
@@ -45,6 +45,6 @@
 		<td colspan="3"><span class="desc">公司信息：</span><span class="content">{cpinfo}</span></td>
 	</tr>
 	<tr>
-		<td colspan="3" style="text-align:right"><span style="color:gray">信息来源：</span><span class="content"><a href="{jburl}">{origin}</a></span></td>
+		<td colspan="3" style="text-align:right"><span style="color:gray">信息来源：</span><span class="content"><a target="_blank" href="{jburl}">{origin}</a></span></td>
 	</tr>
 </table>
