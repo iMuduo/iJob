@@ -39,8 +39,9 @@ public class PageRankHelper {
 	}
 	
 	private static void put(String key,Long value){
-		if(cache.size()<100000)
-			cache.put(key, value);
+		if(cache.size()>100000)
+			cache.clear();
+		cache.put(key, value);
 	}
 	
 	private static void put(String key,String value){
