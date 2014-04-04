@@ -23,10 +23,10 @@
 <jsp:include page="base.jsp"></jsp:include>
 <script type="text/javascript" src="js/result.js"></script>
 <script>
-	var del="正在加载更多城市";
+	var del = "正在加载更多城市";
 	$(function() {
 		$("input[type='submit']").button();
-		$("#search img").click(function(){
+		$("#search img").click(function() {
 			J.goIndex();
 		});
 	});
@@ -46,13 +46,31 @@
 		条结果
 	<p>
 	<div id="result"></div>
-	<label id="keyword" style="display:none"> <s:property
-			value="keyword" /> </label>
-	<label id="wkplace" style="display:none"> <s:property
-			value="wkplace" /> </label>
-	<label id="cpnm" style="display:none"> <s:property
-			value="cpnm" /> </label>
-	<label id="count" style="display:none"> <s:property
-			value="count" /> </label>
+	<div class="hide">
+		<button class="params" name="keyword"> 
+			<s:property value="map['keyword']" /> 
+		</button> 
+		<button class="params" name="cpnm"> 
+			<s:property value="map['cpnm']" /> 
+		</button> 
+		<button class="params" name="wkplace"> 
+			<s:property value="map['wkplace']" /> 
+		</button> 
+		<button class="params" name="cptype"> 
+			<s:property value="map['cptype']" /> 
+		</button> 
+		<button class="params" name="cptrade"> 
+			<s:property value="map['cptrade']" /> 
+		</button> 
+		<button class="params" name="wkform"> 
+			<s:property value="map['wkform']" /> 
+		</button> 
+		<button class="params" name="degreerq"> 
+			<s:property value="map['degreerq']" /> 
+		</button> 
+		<label id="count"> 
+			<s:property value="count" />
+		</label>
+	</div>
 </body>
 </html>

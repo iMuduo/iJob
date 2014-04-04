@@ -13,8 +13,17 @@ var index=0;
 var tpl;
 var count=0;
 var on=false;
+function getParams(i){
+	var ps=$(".params");
+	var params={};
+	for(var i=0;i<ps.length;i++){
+		params[$(ps[i]).attr("name")]=$(ps[i]).text().trim();
+	}
+	params['index']=i;
+	return params;
+}
 function loadPage(i){
-	J.post('page',{keyword:$("#keyword").text().trim(),wkplace:$("#wkplace").text().trim(),cpnm:$("#cpnm").text().trim(),index:i},function(r){
+	J.post('page',getParams(i),function(r){
 		var list=eval("("+r+")");
 		count+=list.length;
 		for(var i=0;i<list.length;i++)
@@ -22,18 +31,19 @@ function loadPage(i){
 			var item=tpl;
 			for(var p in list[i])
 			{
-				var kw=$("#keyword").text().trim();
-				var cpnm=$("#cpnm").text().trim();
-				var wkplace=$("#wkplace").text().trim();
-				var field=list[i][p].replace(del,"");
-				if((kw!="") &&(p=="jbnm"))
-					field=field.replace(new RegExp("("+J.filterRegExp(kw)+")","gi"),"<em>$1</em>");
-				if((cpnm!="") &&(p=="cpnm"))
-					field=field.replace(new RegExp("("+J.filterRegExp(cpnm)+")","gi"),"<em>$1</em>");
-				if((wkplace!="") &&(p=="wkplace"))
-					field=field.replace(new RegExp("("+J.filterRegExp(wkplace)+")","gi"),"<em>$1</em>");
+				var field=list[i][p];
+				var em;
+				if(p=="jbnm")
+					em=$(".params[name='keyword']");
+				else
+					em=$(".params[name='"+p+"']");
+				if(em){
+					var k=em.text().trim();
+					if((k!=""))
+						field=field.replace(new RegExp("("+J.filterRegExp(k)+")","gi"),"<em>$1</em>");
+				}
 				if(p=="wkrq" ||p=="jbdesc"||p=="benefit"||p=="cpinfo")
-				field=field.replace(/[^\d+](\d{1,2}[、\.])/g,"<br>$1");
+					field=field.replace(/[^\d+](\d{1,2}[、\.])/g,"<br>$1");
 				item=item.replaceAll("{"+p+"}",field);
 			}
 			$("#result").append(item);
@@ -58,7 +68,7 @@ $(function(){
 		tpl=r;
 		loadPage(index++);
 	});
-	$("input[name=keyword]").val($("#keyword").text().trim());
+	$("input[name=keyword]").val($(".params[name='keyword']").text().trim());
 	$(window).scroll(function(){
 		if(($(document).height()-$(document).scrollTop()-window.innerHeight)<100 && on)
 		{

@@ -70,6 +70,22 @@
 						<span>工作地点：</span><input type="text" name="wkplace" /> 
 					</td>
 				<tr>
+				<tr>
+					<td>
+						<span>公司类型：</span><input type="text" name="cptype" /> 
+					</td>
+					<td style="padding-left:10px;">
+						<span>公司行业：</span><input type="text" name="cptrade" /> 
+					</td>
+				<tr>
+				<tr>
+					<td>
+						<span>工作形式：</span><input type="text" name="wkform" /> 
+					</td>
+					<td style="padding-left:10px;">
+						<span>学历要求：</span><input type="text" name="degreerq" /> 
+					</td>
+				<tr>
 			</table>
 			</div>
 		</form>

@@ -118,3 +118,6 @@ input[name='go']:hover{
 	width:100%;
 	height:50px;
 }
+#advance table tr{
+	height:18px;
+}

@@ -3,6 +3,7 @@ package cn.edu.ustc.site.enhance;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 import cn.edu.ustc.common.MongoDB;
 import cn.edu.ustc.common.StringHelper;
@@ -18,11 +19,9 @@ import com.mongodb.DBObject;
 public class SearchEnhance {
 	private final String[] fields=new String[]{"cpnm","jbnm","cpscale","cptype","cptrade","genderrq","rcnos","agerq","wkform","deadline","degreerq","salary","wkxp","wkplace","jbdesc","wkrq","benefit","date","cpinfo","origin","jburl","cpurl"};
 	private final int per=20;
-	private String keyword,wkplace,cpnm;
-	public SearchEnhance(String keyword,String wkplace,String cpnm){
-		this.keyword=keyword;
-		this.wkplace=wkplace;
-		this.cpnm=cpnm;
+	private Map<String, String> map;
+	public SearchEnhance(Map<String, String> map){
+		this.map=map;
 	}
 	public String getJson(int i){
 		DBCursor query=getPage(i);
@@ -35,7 +34,7 @@ public class SearchEnhance {
 				row.put(fields[j], (String) (StringHelper.isNullOrEmpty(obj.get(fields[j]))?"²»Ïê":obj.get(fields[j])));
 			result.add(row);
 		}
-		S.get(HotWordService.class).recordWord(keyword);
+		S.get(HotWordService.class).recordWord(map.get("keyword"));
 		return new Gson().toJson(result);
 	}
 	
@@ -50,9 +49,14 @@ public class SearchEnhance {
 	private DBCursor getQuery(){
 		DBCollection db=MongoDB.getCollection("jobInfo2");
 		BasicDBObject conditon=new BasicDBObject();
-		conditon.put("jbnm",  Pattern.compile(String.format("^.*%s.*$", RegExpFilter.filter(keyword)), Pattern.CASE_INSENSITIVE));
-		conditon.put("cpnm",  Pattern.compile(String.format("^.*%s.*$", RegExpFilter.filter(cpnm)), Pattern.CASE_INSENSITIVE));
-		conditon.put("wkplace",  Pattern.compile(String.format("^.*%s.*$", RegExpFilter.filter(wkplace)), Pattern.CASE_INSENSITIVE));
+		for(String k:map.keySet()){
+			String v=map.get(k);
+			if(StringHelper.isNotNullOrEmpty(v)){
+				if(k.equals("keyword"))
+					k="jbnm";
+				conditon.put(k,  Pattern.compile(String.format("^.*%s.*$", RegExpFilter.filter(v)), Pattern.CASE_INSENSITIVE));
+			}
+		}
 		return db.find(conditon).sort(new BasicDBObject("rank",-1));
 	}
 }

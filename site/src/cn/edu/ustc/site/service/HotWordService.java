@@ -9,12 +9,15 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import cn.edu.ustc.common.DBHelper;
 import cn.edu.ustc.common.MongoDB;
+import cn.edu.ustc.common.StringHelper;
 import cn.edu.ustc.common.info.WordRankInfo;
 import cn.edu.ustc.site.base.PyHelper;
 
 public class HotWordService extends BaseService{
 
-	public void recordWord(String word){
+	public int recordWord(String word){
+		if(StringHelper.isNullOrEmpty(word))
+			return 1;
 		DBCollection db=MongoDB.getCollection("hotword");
 		BasicDBObject conditon=new BasicDBObject();
 		conditon.put("_id",  Pattern.compile(String.format("^%s$", word), Pattern.CASE_INSENSITIVE));
@@ -33,6 +36,7 @@ public class HotWordService extends BaseService{
 			wr.setPy(PyHelper.getSimplePy(word));
 			DBHelper.save(db, wr);
 		}
+		return 0;
 	}
 	
 	public List<String> getHotWords(int n){
