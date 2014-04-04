@@ -10,7 +10,7 @@ public final class StringHelper {
 	
 	public static boolean isNotNullOrEmpty(Object obj)
 	{
-		return !isNotNullOrEmpty(obj);
+		return !isNullOrEmpty(obj);
 	}
 	
 	public static boolean isNotNull(Object obj)
